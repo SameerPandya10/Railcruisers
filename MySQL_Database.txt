@@ -1,0 +1,85 @@
+create database railway_project;
+use railway_project;
+create table user
+(
+Railcruisers_id int(4) primary key,
+username varchar(40) not null unique,
+password varchar(15) not null unique,
+name varchar(20) not null,
+contact_no varchar(10) not null unique,
+Bank_Pwd int(5) not null unique
+);
+ create table train
+(
+train_no int (3) primary key,
+train_name varchar(50) not null,
+source  varchar(20) not null,
+destination varchar(20) not null,
+departure_time time,
+arrival_time time,
+Price_per_passenger int (6));
+
+
+
+insert into train values	
+
+(101,'Rajasthan superfast  Express','Jaipur','Chennai','09:00:00','23:00:00',2000),
+(102,'Jan Shatabdi ','Jaipur','New Delhi','14:00:00','19:00:00',1600),
+(103,'Howrah Express','Jaipur','Calcutta','15:00:00','06:00:00',2000),
+(104,'Sambalpur Express','Jaipur','Banglore','15:00:00','06:30:00',2000),
+(105,'Durasthra Express','Jaipur','Mumbai','12:30:00','01:00:00',2000),
+
+(106,'Delhi-Howrah Superfast','New Delhi','Calcutta','01:00:00','13:00:00',1500),
+(107,'Rajdhani Express','New Delhi','Mumbai',' 04:00:00','01:00:00',1000),
+(108,'Duronto Express','New Delhi','Chennai','04:00:00','19:00:00',2000),
+(109,'Deccan Rajdhani Express','New Delhi','Banglore','04:00:00','17:00:00',1200),
+(110,'Jan Rajdhani Express','New Delhi','Jaipur','04:00:00','09:00:00',1100),
+
+(111,'Bombay-Narmada  Express','Mumbai','Jaipur','01:00:00','08:50:00',2000),
+
+(112,'Shatabdi Express','Mumbai','Calcutta','12:00:00','22:40:00',1500),
+(113,'Chennai Express','Mumbai','Chennai','10:00:00','03:00:00',2800),
+(114,'Bombay jan shatabdi  Express','Mumbai','Banglore','17:50:00','04:00:00',2000),
+(115,'August Kranti Rajdhani Express','Mumbai','New Delhi','01:10:00','15:00:00',2500),
+
+(116,'samparkranti Express ','Calcutta','Mumbai','01:00:00','15:00:00',1800),
+(117,'Howrah Express','Calcutta','Banglore','10:00:00','23:00:00',2000),
+(118,'Rajdhani Express','Calcutta','New Delhi','23:00:00','12:00:00',2700),
+(119,'Howrah-rajasthan Express','Calcutta','Jaipur','20:00:00','12:00:00',2700),
+(120,'Dakshin Rajdhani Express','Calcutta','Chennai','19:00:00','12:00:00',2700),
+
+(121,'Calcutta howrah express','Chennai','Calcutta','04:00:00','08:00:00',1000),
+(122,'Rashtra Express','Chennai','New Delhi','09:00:00','23:45:00',1800),
+
+
+
+(123,'Chennaswami Express','Chennai','Banglore','13:00:00','21:00:00',1700),
+(124,'Karnataka RajdhaniExpress','Chennai','Jaipur','05:00:00','19:00:00',1700),
+(125,'Vivekanand Express','Chennai','Mumbai','13:00:00','23:00:00',1700),
+
+(126,'Bangalore New delhi Express','Banglore','New Delhi','04:00:00','20:00:00',2100),
+(127,'Shivaji Express','Banglore','Mumbai','07:00:00','14:00:00',2400),
+(128,'Bangalore shatabdi Express','Banglore','Calcutta','13:00:00','23:00:00',1700),
+(129,'Bangalore Rajdhani Express','Banglore','Jaipur','10:00:00','20:00:00',1700),
+(130,'Saurashtra shatabdi Express','Banglore','Chennai','13:50:00','18:00:00',1700);
+create table booked
+(
+Railcruisers_id int(4) not null,
+name varchar(30) not null,
+train_no integer(3) not null,
+train_name varchar(50) not null,
+source  varchar(20) not null,
+destination varchar(20) not null,
+departure_time time,
+arrival_time time,
+no_of_passengers integer(4),
+total_ticket_amount varchar(10),
+constraint fk_user foreign key (Railcruisers_Id) 
+references user(Railcruisers_Id)
+on update cascade
+on delete cascade,
+constraint fk_train foreign key (train_no) 
+references train(train_no)
+on update cascade
+on delete cascade
+);
